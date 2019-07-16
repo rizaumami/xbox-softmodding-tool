@@ -1,0 +1,3 @@
+[submodule "App Sources/extract-xiso"]
+	path = App Sources/extract-xiso
+	url = https://github.com/XboxDev/extract-xiso
