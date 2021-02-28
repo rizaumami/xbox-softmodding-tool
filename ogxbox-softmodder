@@ -2,317 +2,387 @@
 
 # DESCRIPTION ------------------------------------------------------------------
 #
-# This script is a Bash version of Rocky5's Xbox-Softmodding-Tool.
+# This script is a Bash version of Rocky5's Xbox-Softmodding-Tool batch scripts.
 # See: https://github.com/Rocky5/Xbox-Softmodding-Tool
 #
 # NOTES:
-# -	'Softmod/Softmod Files/Xbox Softmodding Tool.zip' has a different hash
-# 	compared to Windows generated one.
-# 	The different is in 'Installation Guide.htm'. It has same content but
-# 	different size, characters count and hash. Perhaps because Windows add
-# 	carriage return into it.
-#	-	Files.rar (and archives contain it) has different hash compared to Windows
-# 	generated one.
-#		Files inside Files.rar are in exact hash. Perhaps this is because of
-#		different archiver used to generate the archive.
-# - There are some rm errors because of missing files or directories.
+# - Scripts inside 'App Sources' is not ported.
+# - Files listed below has different hash compared to Windows generated one
+#   due to use of different archiver and operating system's quirks.
+#   - Xbox Softmodding Tool.zip : different archiver
+#   - xboxdash.rar              : different archiver
+#   - nkp settings.rar          : different archiver
+#   - nkpatcher.rar             : different archiver
+#   - Files.rar                 : different archiver
+#   - UDDAE-C.zip               : different archiver
+#   - Installation Guide.htm    : 7z (?) remove CR line endings
+# - There are some file operations errors due to missing files or directories.
 #
 # CHANGELOG --------------------------------------------------------------------
 #
 # Sahri Riza Umami
 #   v0.1 - 2019/07/16 18:24:18
 #        - Initial release
+#   v0.2 - 2021/02/28 10:28:04
+#        - Synced to upstream v1.1.8
+#        - Replace zip with 7z
+#
+# LICENSE ----------------------------------------------------------------------
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 # ------------------------------------------------------------------------------
+#
+# VARIABLES --------------------------------------------------------------------
 
 # Get the script's directory.
 if [[ ${BASH_SOURCE[0]%/*} == '.' ]]; then
-  script_dir=$(cd "${BASH_SOURCE[0]%/*}" >/dev/null 2>&1 && pwd)
+  OGXSMDIR=$(cd "${BASH_SOURCE[0]%/*}" >/dev/null 2>&1 && pwd)
 else
-  script_dir=$(pwd)
+  OGXSMDIR=$(pwd)
 fi
-
-cd "$script_dir" || exit
-
-# VARIABLES --------------------------------------------------------------------
-
-output_iso_name='Xbox Softmodding Tool Extras Disc.iso'
-source_directory='Extras Disc'
 # https://github.com/XboxDev/extract-xiso
-xiso='Other/Tools/extract-xiso'
-zip_name='Xbox Softmodding Tool.zip'
+EXISO='Other/Tools/extract-xiso'
+FILESRAR="$OGXSMDIR/C Partition/Files.rar"
+PREBUILD='N'
+SRCDIR='Extras Disc'
+# TMPDIR="$(mktemp -d)"
+UDDAE='Extras Disc/Softmod/dashboards/msdash/other/UDDAE-C.zip'
+XISONAME='Xbox Softmodding Tool Extras Disc.iso'
+ZIPNAME='Xbox Softmodding Tool.zip'
+# Pre-Build files
+XBSMKIT='https://drive.google.com/drive/folders/0BzRN8P835YijRU94cVNNWFA1Z28?usp=sharing'
+INSTVAR='https://drive.google.com/drive/folders/1GO8e61Urz0Ck8110A5C5X0qxnGpLjTI8?usp=sharing'
+EXTRAS='https://drive.google.com/drive/folders/1xTpK-VoZX_uzyztk3zdnDaOdEcfOqPJb?usp=sharing'
+XBSMTZIP='https://drive.google.com/file/d/1_7Ra-2cKSYBjT1pVWuCRTHvDGYuxKhKk/view?usp=sharing'
 
 # FUNCTIONS --------------------------------------------------------------------
 
-message() {
-  printf ':: %s\n' "$*"
-}
+mssg(){ printf ':: %s\n' "$@"; }
+# Print text in brown
+prnt_brwn(){ printf '\e[33m:: %s\n\e[m' "$@"; }
+# Print text in bold brown
+prnt_bbrwn(){ printf '\e[1;33m:: %s\n\e[m' "$@"; }
+# Print text in green
+prnt_grn(){ printf '\e[32m:: %s\n\e[m' "$@"; }
+# Print text in bold green
+prnt_bgrn(){ printf '\e[1;32m:: %s\n\e[m' "$@"; }
 
-# Print message in custom color.
-print_in_brown() {
-  printf '\e[1;33m:: %s\n\e[m' "$*"
-}
-
-print_in_green() {
-  printf '\e[1;32m:: %s\n\e[m' "$*"
-}
-
-# Build save files for Xbox.
+# Build Files.rar.bat
+# nkpatcher exploit
 build_files_rar() {
-  print_in_green 'Build Files.rar'
-  [[ -f Files.rar ]] && rm Files.rar
-  rar a -inul -ep1 -r -x*.db -x"*empty" 'C Partition/nkpatcher.rar' 'C Partition/nkpatcher'
-  rar a -inul -ep1 -r -x*.db -x"*empty" 'C Partition/xboxdash.rar' 'C Partition/xboxdash/'
-  rar a -inul -ep1 -r -x*.db -x"*empty" 'C Partition/nkp settings.rar' 'Save Folder/nkpatcher settings'
-  rar a -inul -ep1 Files.rar 'C Partition'/{xboxdash,nkpatcher,'nkp settings'}.rar
-  rm 'C Partition'/{xboxdash,nkpatcher,'nkp settings'}.rar
+  prnt_bgrn 'Build Files.rar'
+  rm -f Files.rar
+  rar a -inul -ep1 -r -x*.db -x"*empty" 'nkpatcher.rar' 'C Partition/nkpatcher'
+  rar a -inul -ep1 -r -x*.db -x"*empty" 'xboxdash.rar' 'C Partition/xboxdash/'*
+  rar a -inul -ep1 -r -x*.db -x"*empty" 'nkp settings.rar' 'Save Folder/nkpatcher settings'
+  rar a -inul -ep1 -df Files.rar {xboxdash,nkpatcher,'nkp settings'}.rar
 }
 
+continue_or_get_prebuild() {
+  if [[ $PREBUILD == 'Y' ]]; then
+    ${1,,}
+  else
+    prnt_bbrwn 'This is intended for people that know what they are doing.'
+    prnt_brwn 'If you do not, please hit enter to be taken' \
+              'to the Pre-Build versions of the files.'
+    mssg 'Continue? (yY[nN])'
+    read -rp ':: ' CHOICE
+    case "$CHOICE" in
+      y|Y)
+        ${1,,}
+        PREBUILD='Y'
+      ;;
+      *)
+        for LAUNCHER in sensible-browser xdg-open gnome-open; do
+          if command -v "$LAUNCHER" &>/dev/null ; then
+            "$LAUNCHER" "$2" &> /dev/null &
+            exit
+          fi
+        done
+      ;;
+    esac
+  fi
+}
+
+# Game saves exploit
 copy_saves() {
-  mkdir -p Other/tmp/'Softmod Files'/{21585554/000000000000,4d530017,4541000d,SC-{NTSC,PAL}/5553000c,TH4-{NTSC,PAL}/41560017}
-  cp -r 'Save Folder'/{'softmod files',*.{xbe,xbx}} 'Other/tmp/Softmod Files/21585554/000000000000'
-  mv Files.rar 'Other/tmp/Softmod Files/21585554/000000000000/softmod files'
-  cp -r Other/'Game Saves'/Softmod/* 'Other/tmp/Softmod Files/21585554'
-  cp -r Other/'Game Saves'/Extracted/{MA/UDATA/4d530017,007/UDATA/4541000d} 'Other/tmp/Softmod Files'
-  cp -r 'Other/Game Saves/Extracted/SC-NTSC/UDATA/5553000c' 'Other/tmp/Softmod Files/SC-NTSC'
-  cp -r 'Other/Game Saves/Extracted/SC-PAL/UDATA/5553000c' 'Other/tmp/Softmod Files/SC-PAL'
-  cp -r 'Other/Game Saves/Extracted/TH4-NTSC/UDATA/41560017' 'Other/tmp/Softmod Files/TH4-NTSC'
-  cp -r 'Other/Game Saves/Extracted/TH4-PAL/UDATA/41560017' 'Other/tmp/Softmod Files/TH4-PAL'
-  cp -r Other/'Game Saves'/BFM/* Other/tmp/
+  mkdir -p 'Other/tmp/softmod files/'{21585554/000000000000,4d530017,4541000d,SC-{NTSC,PAL}/5553000c,TH4-{NTSC,PAL}/41560017}
+  cp -r 'Save Folder'/{'softmod files',*.{xbe,xbx}} 'Other/tmp/softmod files/21585554/000000000000'
+  mv Files.rar 'Other/tmp/softmod files/21585554/000000000000/softmod files/'
+  cp -r 'Other/Game Saves/Softmod/'* 'Other/tmp/softmod files/21585554/'
+  cp -r 'Other/Game Saves/Extracted/'{MA/UDATA/4d530017,007/UDATA/4541000d} 'Other/tmp/softmod files'
+  cp -r 'Other/Game Saves/Extracted/SC-NTSC/UDATA/5553000c' 'Other/tmp/softmod files/SC-NTSC'
+  cp -r 'Other/Game Saves/Extracted/SC-PAL/UDATA/5553000c' 'Other/tmp/softmod files/SC-PAL'
+  cp -r 'Other/Game Saves/Extracted/TH4-NTSC/UDATA/41560017' 'Other/tmp/softmod files/TH4-NTSC'
+  cp -r 'Other/Game Saves/Extracted/TH4-PAL/UDATA/41560017' 'Other/tmp/softmod files/TH4-PAL'
+  cp 'Other/Game Saves/BFM/'* Other/tmp
 }
 
 # Build save files for Xbox.
 build_disc_save() {
-  print_in_green 'Build Disc Save'
-  [[ ! -f Files.rar ]] && build_files_rar
+  prnt_bgrn 'Build Disc Save'
+  [[ ! -f "$FILESRAR" ]] && build_files_rar
   # Build Softmod Save
-  rm -r 'Extras Disc/Softmod/softmod files'
-  mkdir -p 'Extras Disc/Softmod/softmod files' Other/tmp
+  rm -rf 'Extras Disc/Softmod/softmod files/'*
   copy_saves
   cp 'Save Folder/softmod files/UX.xbe' Other/tmp/unleashx.xbe
-  cd Other/tmp || exit
-  mv 'Softmod Files' 'softmod files'
-  zip -qr -x\*.db "../../Extras Disc/Softmod/softmod files/$zip_name" -- *
-  cd "$script_dir" || exit
+  7z a -y -bso0 -bsp0 '-xr!*.db' "Extras Disc/Softmod/softmod files/$ZIPNAME" ./Other/tmp/*
   rm -r Other/tmp
 }
 
+# Build HDD Save.bat
 # Build save files for Xbox.
 build_hdd_save() {
-  print_in_green 'Build HDD Save'
-  cd "$script_dir" || exit
+  prnt_bgrn 'Build HDD Save'
   [[ ! -f Files.rar ]] && build_files_rar
-  rm -r '../Test Build/UDATA'
-  cp -r 'Save Folder'/* '../Test Build/UDATA/21585554/000000000000'
-  rm -r '../Test Build/UDATA/21585554/000000000000/nkpatcher settings'
-  mv Files.rar '../Test Build/UDATA/21585554/000000000000/Softmod Files'
-  cp -r Other/'Game Saves'/Softmod/* '../Test Build/UDATA/21585554'
-  xdg-open '../Test Build/UDATA/21585554/000000000000'
+  rm -rf '../Test Build/UDATA'
+  mkdir -p '../Test Build/UDATA/21585554/000000000000'
+  cp -r 'Save Folder'/{'softmod files',*.{xbe,xbx}} '../Test Build/UDATA/21585554/000000000000'
+  mv Files.rar '../Test Build/UDATA/21585554/000000000000/softmod files'
+  cp -r 'Other/Game Saves/Softmod/'* '../Test Build/UDATA/21585554'
+  if command -v xdg-open &>/dev/null ; then
+    xdg-open '../Test Build/UDATA/21585554/000000000000'
+  else
+    ls -lah --color '../Test Build/UDATA/21585554/000000000000'
+  fi
 }
 
+# Build Installer Variants.bat
 # Build save files for Xbox.
 build_installer_variants() {
-  print_in_green 'Build Installer Variants'
-  [[ ! -f Files.rar ]] && build_files_rar
+  prnt_bgrn 'Build Installer Variants'
+  [[ ! -f "$FILESRAR" ]] && build_files_rar
   mkdir -p Other/tmp
   copy_saves
+  # Linux is case sensitive.
+  mv 'Other/tmp/'{'softmod files','Softmod Files'}
   for up in Update Upgrade; do
     cp 'Save Folder/softmod files/UX.xbe' "Installer Variants/Quick $up/Quick $up/unleashx.xbe"
     cp Other/tmp/{boot.cfg,default.xbe,NoVC.bin} "Installer Variants/Quick $up/Quick $up/"
     cp -r 'Other/tmp/Softmod Files/' "Installer Variants/Quick $up/Quick $up"
     cp -r 'Other/tmp/Softmod Files/21585554/000000000000/softmod files/skin files' "Installer Variants/Quick $up/Quick $up/skins/skin files/"
   done
-
   rm -r 'Installer Variants/Quick Update/Quick Update/Softmod Files/'{4d530017,4541000d,SC-NTSC,SC-PAL,TH4-NTSC,TH4-PAL}
   cp 'Save Folder/softmod files/UX.xbe' 'Installer Variants/XBHDM Build/C/installer/unleashx.xbe'
-  cp -r 'Other/tmp/Softmod Files' 'Installer Variants/XBHDM Build/C/installer/Softmod Files'
+  cp -r 'Other/tmp/Softmod Files' 'Installer Variants/XBHDM Build/C/installer'
   cp -r 'Other/tmp/Softmod Files/21585554/000000000000/softmod files/skin files' 'Installer Variants/XBHDM Build/C/installer/skins/skin files'
 
-  cd 'Installer Variants/Quick Update' || exit
-  zip -qr -x\*.db '../../Quick Update' -- *
-  cd '../Quick Upgrade' || exit
-  zip -qr -x\*.db '../../Quick Upgrade' -- *
-  cd .. || exit
-  zip -qr -x\*.db '../XBHDM Build' 'XBHDM Build'
-  rm -r 'Quick Update/Quick Update/'{skins/'skin files','Softmod Files',unleashx.xbe,default.xbe,boot.cfg,NoVC.bin}
-  rm -r 'Quick Upgrade/Quick Upgrade/'{skins/'skin files','Softmod Files',unleashx.xbe,default.xbe,boot.cfg,NoVC.bin}
-  rm -r 'XBHDM Build/C/installer/'{skins/'skin files','Softmod Files',unleashx.xbe}
+  7z a -y -bso0 -bsp0 '-xr!*.db' 'Quick Update.zip' './Installer Variants/Quick Update/'*
+  7z a -y -bso0 -bsp0 '-xr!*.db' 'Quick Upgrade.zip' './Installer Variants/Quick Upgrade/*'
+  7z a -y -bso0 -bsp0 '-xr!*.db' 'XBHDM Build.zip' './Installer Variants/XBHDM Build/'
+  rm -r 'Installer Variants/Quick Update/Quick Update/'{skins/'skin files','Softmod Files',unleashx.xbe,default.xbe,boot.cfg,NoVC.bin}
+  rm -r 'Installer Variants/Quick Upgrade/Quick Upgrade/'{skins/'skin files','Softmod Files',unleashx.xbe,default.xbe,boot.cfg,NoVC.bin}
+  rm -r 'Installer Variants/XBHDM Build/C/installer/'{skins/'skin files','Softmod Files',unleashx.xbe}
+  cd 'Utilites/Xbox/Attacher, Detacher' || exit
+  if [[ ! -f 'Extras Disc Attacher.zip' ]]; then
+    7z a -y -bso0 -bsp0 '-xr!*.db' '../Extras Disc Attacher.zip' "./${XISONAME%.*}"
+    7z a -y -bso0 -bsp0 '-xr!*.db' '../Extras Disc Attacher.zip' './Detacher'
+  fi
 
-  cd '../Utilites/Xbox/Attacher, Detacher' || exit
-  [[ ! -f 'Extras Disc Attacher.zip' ]] && zip -qr 'Extras Disc Attacher' -- *
+  cd "$OGXSMDIR" || exit
 
-  cd "$script_dir" || exit
-
-  # NOTE: Upstream bug. There is no 'Softmod Files'.
-  # Use -f to suppress cp error.
   rm -rf Other/{tmp,'Game Saves/BFM/Softmod Files'}
 }
 
+# Build Softmod zip.bat
 # Build Release build.
 build_softmod_zip() {
-  print_in_green 'Build Softmod zip'
-  [[ -f Files.rar ]] && rm Files.rar
+  prnt_bgrn 'Build Softmod zip'
+  rm -f "$ZIPNAME"  Files.rar
   build_files_rar
   # Build Softmod Save.zip
-  mkdir -p temp/{'Softmod Package','Installation Guide',UDATA/21585554/000000000000}
-  cd temp || exit
-  cp -r ../'Save Folder'/* UDATA/21585554/000000000000
-  cp -r ../Other/'Game Saves'/Softmod/* UDATA/21585554/
-  cp ../Other/'Game Saves'/Zipped/*.zip 'Softmod Package'
-  cp -r '../Documents/Installation Guide' .
-  mv ../Files.rar 'UDATA/21585554/000000000000/Softmod Files'
-  rm -r 'UDATA/21585554/000000000000/nkpatcher settings'
-  zip -qr -x\*.db '../temp/Softmod Package/Softmod Save.zip' UDATA/21585554
+  mkdir -p tmp/{'Softmod Package','Installation Guide',UDATA/21585554/000000000000}
+  cp -r 'Save Folder'/{'softmod files',*.{xbe,xbx}} tmp/UDATA/21585554/000000000000
+  cp -r 'Other/Game Saves/Softmod/'* tmp/UDATA/21585554/
+  cp 'Other/Game Saves/Zipped/'*.zip 'tmp/Softmod Package'
+  cp -r 'Documents/Installation Guide' tmp
+  mv Files.rar 'tmp/UDATA/21585554/000000000000/softmod files'
+  7z a -y -bso0 -bsp0 '-xr!*.db' 'tmp/Softmod Package/Softmod Save.zip' ./tmp/UDATA
   # Build Xbox Softmodding Tool.zip
-  cp ../Documents/ReadMe.url ReadMe.url
-  zip -qr -x\*.db "../$zip_name" 'Installation Guide' 'Softmod Package' ReadMe.url
-  cd '../Installer Variants/UDDAE/' || exit
-  zip -qr -x\*.db '../../Extras Disc/Softmod/dashboards/msdash/other/UDDAE-C.zip' 'resoftmod dash'
-  cd "$script_dir" || exit
-  zip -qr -x\*.db "$zip_name" Changes.txt
-  zip -qr -x\*.db "$zip_name" Documents/{Troubleshooting.txt,'How to run the exploit save.txt'}
-  zip -qr -x\*.db "$zip_name" Utilites/PC/{'Open FTP Window.bat','OpenDash Dualboot.Settings'}
-  rm -r temp
+  cp Documents/ReadMe.url tmp/
+  7z a -y -bso0 -bsp0 '-xr!*.db' "$ZIPNAME" ./tmp/{'Installation Guide','Softmod Package',ReadMe.url}
+  7z a -y -bso0 -bsp0 '-xr!*.db' "$UDDAE" './Installer Variants/UDDAE/resoftmod dash'
+  7z a -y -bso0 -bsp0 '-xr!*.db' "$ZIPNAME" Changes.txt
+  7z a -y -bso0 -bsp0 '-xr!*.db' "$ZIPNAME" Documents/{Troubleshooting.txt,'How to run the exploit save.txt'}
+  7z a -y -bso0 -bsp0 '-xr!*.db' "$ZIPNAME" Utilites/PC/{'Open FTP Window.bat','OpenDash Dualboot.Settings'}
+  rm -r tmp
 }
 
+# Build Test XISO.bat
 build_test_xiso() {
-  print_in_green 'Build test XISO'
-  message 'About to create an Xbox test ISO.'
-  message "Source Directory: $source_directory"
-  message "Output ISO Name: $output_iso_name"
+  prnt_bgrn 'Build test XISO'
+  mssg 'About to create an Xbox test ISO.'
+  mssg "Source Directory: $SRCDIR"
+  mssg "Output ISO Name : $XISONAME"
   build_disc_save
-  mv "$source_directory/Softmod/Other" Other
-  $xiso -qc "$source_directory" "$output_iso_name"
-  mv "Other/Other" "$source_directory/Softmod"
-  rm -r "$source_directory/Softmod/Softmod Files/Softmod Files"
+  # NOTE: Upstream bug.
+  #mv "$SRCDIR/Softmod/Other" Other
+  $EXISO -qc "$SRCDIR" "$XISONAME"
+  # NOTE: Upstream bug.
+  # mv: cannot stat 'Extras Disc/Softmod/Other': No such file or directory
+  # mv: cannot stat 'Other/Other': No such file or directory
+  #mv "Other/Other" "$SRCDIR/Softmod"
+  #rm -rf "$SRCDIR/Softmod/softmod files/Softmod Files"
 }
 
+# Build XISO.bat
 build_xiso() {
-  print_in_green 'Build XISO'
-  message 'About to create an Xbox ISO.'
-  message "Source Directory: $source_directory"
-  message "Output ISO Name: $output_iso_name"
+  prnt_bgrn 'Build XISO'
+  mssg 'About to create an Xbox ISO.'
+  mssg "Source Directory: $SRCDIR"
+  mssg "Output ISO Name : $XISONAME"
   build_disc_save
-  $xiso -qc "$source_directory" "$output_iso_name"
+  $EXISO -qc "$SRCDIR" "$XISONAME"
   # NOTE: Upstream bug. There is no 'Softmod Files'.
-  # Use -f to suppress cp error.
-  rm -rf "$source_directory/Softmod/Softmod Files/Softmod Files"
+  #rm -rf "$SRCDIR/Softmod/Softmod Files/Softmod Files"
 }
 
+# Build XISO Application.bat
 build_xiso_application() {
-  print_in_green 'Build XISO application'
-  message 'About to create an Xbox ISO application.'
-  message "Source Directory: $source_directory"
-  message "Output ISO Name: Xbox Softmodding Tool Extras Disc/$output_iso_name"
+  prnt_bgrn 'Build XISO application'
+  mssg 'About to create an Xbox ISO application.'
+  mssg "Source Directory: $SRCDIR"
+  mssg "Output ISO Name : ${XISONAME%.*}/$XISONAME"
   build_disc_save
-  cp -r 'Utilites/Xbox/Attacher, Detacher/Xbox Softmodding Tool Extras Disc' 'Xbox Softmodding Tool Extras Disc'
-  $xiso -qc "$source_directory" "Xbox Softmodding Tool Extras Disc/$output_iso_name"
-  rm -r "$source_directory/Softmod/Softmod Files/Softmod Files"
-}
-
-remove_all_thumbdb() {
-  print_in_green 'RemvAll Thumbs.db Files'
-  find . -type f \( -name 'Thumbs.db' -o -name 'desktop.ini' \) -exec rm '{}' \;
-}
-
-update_skin_version() {
-  print_in_green 'Update Skin Version Number'
-  mapfile version < "Other/Build Version.txt"
-  # Build Version.txt contain carriage return (\r).
-  # Slice the string to extract version number without \r.
-  # As long as the version number is in 5 digits this will be fine.
-  old_version=${version:8:5}
-
-  # Using Bash's mapfile to replace string in file.
-  read -rp ':: Enter New version number: ' new_version
-  if [[ -z "$new_version" ]]; then
-    message "Current Build Version = $old_version"
-    message "Using $old_version as the version number."
-  else
-    replace=$new_version
-    message "Using $new_version as the version number."
-    mapfile < "Other/Build Version.txt"; echo "${MAPFILE[@]/$old_version/$replace}" > 'Build Version.txt'
-    mapfile < README.md; echo "${MAPFILE[@]/Xbox Softmodding Tool v$old_version/Xbox Softmodding Tool v$replace}" > README.md
-    mapfile < Changes.txt; echo "${MAPFILE[@]/Xbox Softmodding Tool v$old_version/Xbox Softmodding Tool v$replace}" > Changes.txt
-
-    while IFS= read -r -d '' skin; do
-      mapfile < "$skin"; echo "${MAPFILE[@]/<Version>$old_version<\/Version>/<Version>$replace<\/Version>}" > "$skin"
-    done < <(find . -type f -name 'skin.xml' -print0)
-
-    for skinwe in 'Save Folder/nkpatcher settings/skins/Dashboard'/skin{wide,evox}.xml; do
-      mapfile < "$skinwe"; echo "${MAPFILE[@]/<Version>$old_version<\/Version>/<Version>$replace<\/Version>}" > "$skinwe"
-    done
-  fi
-}
-
-build_release() {
-  print_in_green 'Build Release'
-
-  [[ -d temp ]] && rm -r temp
-  [[ -d ../Release ]] && rm -r ../Release
-  mkdir -p ../Release/{'Installer Variants',Utilites,Documents,'Extras Disc'/{Documents,Extras}}
-
-  update_skin_version
-  remove_all_thumbdb
-  build_softmod_zip
-  build_installer_variants
-  build_xiso
-
-  #  Xbox Softmodding Tool
-  mv "$zip_name" ../Release
-  cp Changes.txt ../Release
-  cp Documents/ReadMe.url '../Release/Read Me.url'
-  # NOTE: Upstream bug. There is no 'Free FTP Programs.txt'
-  # cp 'Documents/'{'Free FTP Programs.txt','How to run the exploit save.txt',Troubleshooting.txt} ../Release/Documents
-  cp 'Documents/'{'How to run the exploit save.txt',Troubleshooting.txt} ../Release/Documents
-  cp Other/Graphics/thumb.jpg ../Release
-  #  Extras Disc
-  mv -- *.iso '../Release/Extras Disc'
-  cp Documents/{'UDDAE Instructions.txt','Run XISO from HDD.txt'} '../Release/Extras Disc/Documents'
-  cp 'Utilites/Xbox/Attacher, Detacher/Extras Disc Attacher.zip' '../Release/Extras Disc/Extras'
-  #  Variants
-  mv 'Quick Update.zip' 'Quick Upgrade.zip' 'XBHDM Build.zip' '../Release/Installer Variants'
-  #  Tools
-  cp Utilites/PC/zipped/* ../Release/Utilites
-  xdg-open ../Release
+  cp -r "Utilites/Xbox/Attacher, Detacher/${XISONAME%.*}" "${XISONAME%.*}"
+  $EXISO -qc "$SRCDIR" "${XISONAME%.*}/$XISONAME"
+  # NOTE: Upstream bug. There is no 'Softmod Files'.
+  rm -rf "$SRCDIR/Softmod/softmod files/Softmod Files"
 }
 
 print_help() {
   printf '%s\n' "
-  Softmodding tool for first generation Xbox.
+  ${0##*/} is a softmodding tool for the first generation Xbox.
+
+  This script is a Bash version of Rocky5's Xbox-Softmodding-Tool.
+  See: https://github.com/Rocky5/Xbox-Softmodding-Tool
 
   Usage: ${0##*/} OPTION
 
   OPTION:
-    -ds, disc-save              create game save
-    -f, files-rar               create nkpatcher files.rar
-    -hds, hdd-save             	create game save on disk
-    -iv, installer-variants     create installer variants
-    -r, release                 build release
-    -rm, rm-thumbdb             remove thumb.dbs and desktop inis
-    -s, softmod-zip             create Xbox Softmodding Tool.zip
-    -tx, test-xiso              build test Xbox Softmodding Tool Extras Disc.iso
-    -us, update-skin            update skin version
-    -x, xiso                    build Xbox Softmodding Tool Extras Disc.iso
-    -xa, xiso-app               build Xbox Softmodding Tool Extras Disc.iso
+    -dsv  --disc-save           Build save files for Xbox
+    -hdds --hdd-save            Build save files on disk
+    -rar  --files-rar           Create nkpatcher Files.rar
+    -rls  --release             Build release
+    -rmdb --rm-thumbdb          Remove Thumb.dbs and desktop.inis
+    -skin --update-skin         Update skin version
+    -test --test-xiso           Build test $XISONAME
+    -var  --installer-variants  Create installer variants
+    -xapp --xiso-app            Build ${XISONAME%.*}
+    -xiso --xiso                Build $XISONAME
+    -zip  --softmod-zip         Create $ZIPNAME
 
   Most of the time, all you need is just build a release:
-    ${0##*/} -r
+    ${0##*/} -rls
   or
-    ${0##*/} release
+    ${0##*/} --release
 "
+}
+
+# Remove All Thumb.db.bat
+remove_all_thumbdb() {
+  prnt_bgrn 'Remove all Thumbs.db and desktop.ini files'
+  find . -type f \( -iname 'Thumbs.db' -o -iname 'desktop.ini' \) -exec rm -v '{}' \;
+}
+
+# Update Skin Version Number.bat
+update_skin_version_number() {
+  prnt_bgrn 'Update Skin Version Number'
+  mapfile -t VERSION < 'Other/Build Version.txt'
+  # Build Version.txt contain carriage return (\r).
+  OLDVER=${VERSION//$'\r'}
+  OLDVER=${OLDVER##*=}
+
+  read -rp ':: Enter new version number: ' NEWVERSION
+  if [[ -z "$NEWVERSION" ]]; then
+    mssg "Current Build Version = $OLDVER"
+    mssg "Using $OLDVER as the version number."
+  else
+    prnt_grn "Using $NEWVERSION as the version number."
+    mapfile < "Other/Build Version.txt"
+    echo "${MAPFILE[@]/$OLDVER/$NEWVERSION}" > 'Build Version.txt'
+    # NOTE: Upstream bug. There is no "Xbox Softmodding Tool v$OLDVER" to replace.
+    #mapfile < README.md
+    #echo "${MAPFILE[@]/Xbox Softmodding Tool v$OLDVER/Xbox Softmodding Tool v$NEWVERSION}" > README.md
+    mapfile < README.md
+    echo "${MAPFILE[@]/Current release v$OLDVER/Current release v$NEWVERSION}" > README.md
+    mapfile < Changes.txt
+    echo "${MAPFILE[@]/Xbox Softmodding Tool v$OLDVER/Xbox Softmodding Tool v$NEWVERSION}" > Changes.txt
+
+    while IFS= read -r -d '' skin; do
+      mapfile < "$skin"
+      echo "${MAPFILE[@]/<Version>$OLDVER<\/Version>/<Version>$NEWVERSION<\/Version>}" > "$skin"
+    done < <(find . -type f -iname 'skin.xml' -print0)
+
+    for skinwe in 'Save Folder/nkpatcher settings/skins/Dashboard'/skin{wide,evox}.xml; do
+      mapfile < "$skinwe"
+      echo "${MAPFILE[@]/<Version>$OLDVER<\/Version>/<Version>$NEWVERSION<\/Version>}" > "$skinwe"
+    done
+  fi
+
+  7z a -y -bso0 -bsp0 '-xr!*.db' "$UDDAE" './Installer Variants/UDDAE/resoftmod dash'
+}
+
+# Build Release.bat
+build_release() {
+  prnt_bgrn 'Build Release'
+
+  mkdir -p ../Release/{'Installer Variants',Utilites,Documents,'Extras Disc'/{Documents,Extras}}
+
+  update_skin_version_number
+  remove_all_thumbdb
+  build_softmod_zip
+  build_installer_variants
+  build_xiso
+  # Xbox Softmodding Tool
+  mv "$ZIPNAME" ../Release
+  cp Changes.txt ../Release
+  cp Documents/ReadMe.url '../Release/Read Me.url'
+  # NOTE: Upstream bug.
+  # - no 'Free FTP Programs.txt'
+  # - batch script failed to copy 'How to run the exploit save.txt'
+  cp 'Documents/'{'Free FTP Programs.txt','How to run the exploit save.txt',Troubleshooting.txt} ../Release/Documents 2>/dev/null
+  cp Other/Graphics/thumb.jpg ../Release
+  # Extras Disc
+  mv "$XISONAME" '../Release/Extras Disc'
+  cp Documents/{'UDDAE Instructions','Run XISO from HDD'}.txt '../Release/Extras Disc/Documents'
+  cp 'Utilites/Xbox/Attacher, Detacher/Extras Disc Attacher.zip' '../Release/Extras Disc/Extras'
+  # Variants
+  mv 'Quick Update.zip' 'Quick Upgrade.zip' 'XBHDM Build.zip' '../Release/Installer Variants'
+  # Tools
+  cp Utilites/PC/zipped/* ../Release/Utilites
+  if command -v xdg-open &>/dev/null ; then
+    xdg-open ../Release
+  else
+    ls -lah --color ../Release
+  fi
 }
 
 # MAIN -------------------------------------------------------------------------
 
 # This script using recent bashisms, so make sure to run on newer bash shell.
 if [[ ${BASH_VERSINFO[0]} -lt 4 ]]; then
-  print_in_brown 'Sorry, you need at least bash-4.0 to run this script.'
+  prnt_bbrwn 'Use bash version 4.0 or higher to run this script.'
   exit
 fi
 
+cd "$OGXSMDIR" || exit
+
 # Checking dependencies.
-declare -a DEPS=(rar zip)
+# rar is not FLOSS so you need to enable non-free (multiverse, or similar) repo.
+declare -a DEPS=(rar 7z)
 for ((NUM=${#DEPS[@]},i=0; i<NUM;i++)); do
   if command -v "${DEPS[i]}" &>/dev/null ; then
     unset -v "DEPS[i]"
@@ -321,45 +391,69 @@ done
 
 # Exit if dependency not found.
 if [[ "${#DEPS[@]}" -gt 0 ]]; then
-  print_in_brown 'Package(s) not found'
-  print_in_brown 'Install the proper distribution package for your system:'
+  prnt_bbrwn 'Package(s) not found'
+  prnt_bbrwn 'Install the proper distribution package for your system:'
   printf '   - %s\n' "${DEPS[@]}"
   exit 1
 fi
 
 case "$1" in
-  -ds|disc-save)
+  -dsv|disc-save)
     build_disc_save
+    mssg "Done: Extras Disc/Softmod/softmod files/$ZIPNAME"
   ;;
-  -f|files-rar)
+  -rar|files-rar)
     build_files_rar
+    mssg 'Done: Files.rar'
   ;;
-  -hds|hdd-save)
-    build_hdd_save
+  -hdds|hdd-save)
+    continue_or_get_prebuild BUILD_HDD_SAVE "$XBSMKIT"
+    mssg 'Done: ../Test Build'
   ;;
-  -iv|installer-variants)
-    build_installer_variants
+  -var|installer-variants)
+    continue_or_get_prebuild BUILD_INSTALLER_VARIANTS "$INSTVAR"
+    mssg 'Done:' \
+         '- Quick Update.zip' \
+         '- Quick Upgrade.zip' \
+         '- XBHDM Build.zip'
   ;;
-  -r|release)
-    build_release
+  -rls|release)
+    continue_or_get_prebuild build_release "$XBSMKIT"
+    mssg 'Done:' \
+         '- ../Release'	\
+         "- $UDDAE" \
+         "- Extras Disc/Softmod/softmod files/$ZIPNAME"
   ;;
-  -rr|rm-thumbdb)
+  -rmdb|rm-thumbdb)
     remove_all_thumbdb
   ;;
-  -s|softmod-zip)
-    build_softmod_zip
+  -zip|softmod-zip)
+    continue_or_get_prebuild BUILD_SOFTMOD_ZIP "$XBSMTZIP"
+    mssg 'Done:' \
+         "- $ZIPNAME" \
+         "- $UDDAE"
   ;;
-  -tx|test-xiso)
-    build_test_xiso
+  -test|test-xiso)
+    continue_or_get_prebuild BUILD_TEST_XISO "$EXTRAS"
+    mssg 'Done:' \
+         "- $XISONAME" \
+         "- Extras Disc/Softmod/softmod files/$ZIPNAME"
   ;;
-  -us|update-skin)
-    update_skin_version
+  -skin|update-skin)
+    update_skin_version_number
+    mssg "Done: $UDDAE"
   ;;
-  -x|xiso)
-    build_xiso
+  -xiso)
+    continue_or_get_prebuild BUILD_XISO "$EXTRAS"
+    mssg 'Done:' \
+         "- $XISONAME" \
+         "- Extras Disc/Softmod/softmod files/$ZIPNAME"
   ;;
-  -xa|xiso-app)
-    build_xiso_application
+  -xapp|xiso-app)
+    continue_or_get_prebuild BUILD_XISO_APPLICATION "$EXTRAS"
+    mssg 'Done:' \
+         "- ${XISONAME%.*}" \
+         "- Extras Disc/Softmod/softmod files/$ZIPNAME"
   ;;
   *)
     print_help
