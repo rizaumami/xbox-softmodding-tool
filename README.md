@@ -1,5 +1,5 @@
 ![Thumb](/Other/Graphics/banner.png)
-## Current release v1.1.6
+## Current release v1.1.8
 
 ##  Background:
 
@@ -46,7 +46,7 @@ I set out to try and make the softmodding process as pain free and user friendly
  * Extremely difficult to break the softmod
  * Supports the Xbox HDD partition table
  * Built in back door if you break your dashboard. ( Hold Start+Y on startup )
- * Allows you to NULL the HDD Key
+ * Allows you to Set the HDD Key to all 1s
  * Allows you to switch video regions
  * Persistent Softmod Mode
  * Clock auto set to 01/01/2019 (No more clock loops)
@@ -81,6 +81,14 @@ I set out to try and make the softmodding process as pain free and user friendly
  
 </details>
 
+
+## Custom face button XBE launching.
+
+You can create up to 8 custom boot locations that can be activated with the hold of a button on boot.
+
+Currently it supports A,B,X,Y,Start,Back,White and black, Configs are located in E:/UDATA/21585554/000000000000/nkpatcher settings/dashloader/
+
+Simply open the corresponding .cfg file and add the absolute path of what ever you want to load.
 
 
 ## NKPatcher Settings:
@@ -118,8 +126,8 @@ Power on using the eject button allows you to load an alternative dashboard.
  - #### Remove Parental Controls:
    - This option will remove the parental controls set by the MSDash without requiring the MSDash.
 ### 2.1.1 Hard Drive
- - #### Null Key:
-   - This option will allow you to NULL your eeprom Key and relock your Hard drive to this new key. This allows the creation of new hard drive's or fixing your current hard drive a doddle as you will be able to lock these drives with a 32 zero key.
+ - #### Change EEPROM HDD Key:
+   - This option will allow you to change your eeprom hdd Key to a known key and relock your Hard drive to this new key. This allows the creation of new hard drive's or fixing your current hard drive a doddle as you will be able to lock these drives with a 32 1s key.
 ### 2.1.2 Persistent Softmod
  - #### Enable:
    - This option will allow you to re-enable the persistent softmod mode. What this mode does is puts the Xbox into a controlled error 16 state. Don't be alarmed!. This is 100% safe, as long as you don't remove anything from the real C partition. In this mode every game is loaded under the softmod, what this means is IGR on all retail (original) games and never needing worry about losing your softmod again, though with my softmod that's a moot point.
@@ -133,6 +141,8 @@ Power on using the eject button allows you to load an alternative dashboard.
    - This option will allow you to change your Xbox video region to NTSC, so you can get those lovely HD resolutions. ( using a component cable )
  - #### Set Video to PAL:
    - This option will allow you to change your Xbox video region to PAL, so you can play some of the PAL exclusive games that don't work when set to NTSC.
+### 2.1.5 Remove parental controles:
+ - This option will remove all parental controls from the xbox, no more Xbox dash yah!
 
 
 ## 3. Fan speed
@@ -159,8 +169,8 @@ Power on using the eject button allows you to load an alternative dashboard.
 ## 5. Kernel Fonts
 Displays current font used for the NDURE exploit.
 ### 5.1 Advanced Features
- - #### Backup Xbox Bios
-   - Backs up the Xbox Bios to E:\Backups\Bios
+ - #### Install Kernel Font:
+   - This option will install a kernel specific font. This isn't really needed but if there are boot issues this can fix the issue.	
 ### 5.1.1 Kernel Font Options
  - #### Install Kernel Font:
    - This option will install a kernel specific font. This isn't really needed but if there are boot issues this can fix the issue.	
@@ -173,10 +183,12 @@ Displays current font used for the NDURE exploit.
  - #### Install 3 Delay files:
  - #### Install 4 Delay files:
  - #### Install 5 Delay files:
+### 5.1.3 Backup Xbox Bios
+ - Backs up the Xbox Bios to E:\Backups\Bios
 
 
 ## 6. LED colour
- - ### Self explanatory.
+ - Self explanatory.
 
 
 ## 7. Video modes
@@ -232,20 +244,6 @@ Displays current font used for the NDURE exploit.
    - Stock MS Dash 5960
    - Hacked MS Dash 4920
  
-Note: homebrew and mods aren't included in the GitHub build as it was to large.
-#### Homebrew
- - Aliens versus Predator Gold
- - DoomX
- - Super Mario War 1.8
- - Super Mario War 1.8 Halloween Edition
- - xDuke
- 
-#### Game Mods
-  - FIFA 07 - real gameplay mod
-  - Operation Flashpoint Elite - Addons
-  - Richard Burns Rally - Textures & realistic damage & physics.
-  - WWE Wrestlemania XXI - CrazyChris ModPack v1, crap-loads of changes.
-
 #### Advanced Menu
  - #### Update 2014 Softmod
    - Used to upgrade from my 2014 Softmod.

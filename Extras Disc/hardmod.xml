@@ -47,11 +47,8 @@
 			<Game_Save_Select>dummy.wav</Game_Save_Select>
 			<Memory_Slot>dummy.wav</Memory_Slot>
 		</Audio>
-		<Shortcut>
-			<GP_BLACK>D:\Softmod\Applications\Enigmah-X\default.xbe</GP_BLACK>
-		</Shortcut>
 		<LED>
-			<Default>Orange</Default>
+			<Default>Red</Default>
 		</LED>
 	</Settings>
 	<Menu>
@@ -368,7 +365,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="E:\Dashboard"/>
 						<Item Action="Delete" arg1="E:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's Avalaunch installed to "C:\Dashboard\"</Item>
 				</list>
 				<List Text=" E:\Dashboard\" Sort="Off" Batch="True" Icon="E:\Dashboard\installed.png">
@@ -383,7 +380,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="C:\Dashboard"/>
 						<Item Action="Delete" arg1="C:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's Avalaunch installed to "E:\Dashboard\"</Item>
 				</list>
 				<Item>Install as application to:</Item>
@@ -451,7 +448,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="E:\Dashboard"/>
 						<Item Action="Delete" arg1="E:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's EvolutionX installed to "C:\Dashboard\"</Item>
 				</list>
 				<List Text=" E:\Dashboard\" Sort="Off" Batch="True" Icon="E:\Dashboard\installed.png">
@@ -466,7 +463,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="C:\Dashboard"/>
 						<Item Action="Delete" arg1="C:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's EvolutionX installed to "E:\Dashboard\"</Item>
 				</list>
 				<Item>Install as application to:</Item>
@@ -534,7 +531,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="E:\Dashboard"/>
 						<Item Action="Delete" arg1="E:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's User Interface X Dash installed to "C:\Dashboard\"</Item>
 				</list>
 				<List Text=" E:\Dashboard\" Sort="Off" Batch="True" Icon="E:\Dashboard\installed.png">
@@ -549,7 +546,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="C:\Dashboard"/>
 						<Item Action="Delete" arg1="C:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's User Interface X Dash installed to "E:\Dashboard\"</Item>
 				</list>
 				<Item>Install as application to:</Item>
@@ -617,7 +614,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="E:\Dashboard"/>
 						<Item Action="Delete" arg1="E:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's UnleashX installed to "C:\Dashboard\"</Item>
 				</list>
 				<List Text=" E:\Dashboard\" Sort="Off" Batch="True" Icon="E:\Dashboard\installed.png">
@@ -632,7 +629,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="C:\Dashboard"/>
 						<Item Action="Delete" arg1="C:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's UnleashX installed to "E:\Dashboard\"</Item>
 				</list>
 				<Item>Install as application to:</Item>
@@ -683,7 +680,7 @@
 					<Item Action="MessageBox" arg1="Done">That's UnleashX installed to "G:\Applications\UnleashX\"</Item>
 				</list>
 				<Item>Extras:</Item>
-				<List Text=" Install Audio Folder" Sort="Off" Batch="True" Icon="G:\Applications\UnleashX\installed.png">
+				<List Text=" Install Audio Folder" Sort="Off" Batch="True">
 					<Item Action="AskUser" arg1="Continue" arg2="This will install the MSDash's Audio folder to C:\Audio\. This will enable sound effects and background sounds in UnleashX."/>
 					<Item Action="Format" arg1="Y"/>
 					<Item Action="Unzip" arg1="dashboards\msdash\Other\Audio.zip" arg2="Y:\"/>
@@ -719,7 +716,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="C:\Dashboard"/>
 						<Item Action="Delete" arg1="C:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's XBMC-Emustation installed to "E:\Dashboard\"</Item>
 				</list>
 				<List Text=" E:\XBMC-Emustation\" Sort="Off" Batch="True" Icon="E:\XBMC-Emustation\installed.png">
@@ -730,7 +727,7 @@
 					<Item Action="Unzip" arg1="D:\Softmod\Dashboards\XBMC-Emustation.zip" arg2="E:\XBMC-Emustation">Installing dash to E:\XBMC-Emustation\</Item>
 					<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="E:\XBMC-Emustation\"/>
 					<Item Action="Format" arg1="Z"/>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's XBMC-Emustation installed to "E:\XBMC-Emustation\"</Item>
 				</list>
 				<List Text=" F:\XBMC-Emustation\" Sort="Off" Batch="True" Icon="F:\XBMC-Emustation\installed.png">
@@ -740,7 +737,7 @@
 					<Item Action="Unzip" arg1="D:\Softmod\Dashboards\XBMC-Emustation.zip" arg2="F:\XBMC-Emustation">Installing dash to F:\XBMC-Emustation\</Item>
 					<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="F:\XBMC-Emustation\"/>
 					<Item Action="Format" arg1="Z"/>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's XBMC-Emustation installed to "F:\XBMC-Emustation\"</Item>
 				</list>
 				<Item>Install as application to:</Item>
@@ -799,7 +796,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="C:\Dashboard"/>
 						<Item Action="Delete" arg1="C:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's XBMC4Gamers installed to "E:\Dashboard\"</Item>
 				</list>
 				<List Text=" E:\XBMC4Gamers\" Sort="Off" Batch="True" Icon="E:\XBMC4Gamers\installed.png">
@@ -810,7 +807,7 @@
 					<Item Action="Unzip" arg1="D:\Softmod\Dashboards\XBMC4Gamers.zip" arg2="E:\XBMC4Gamers">Installing dash to E:\XBMC4Gamers\</Item>
 					<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="E:\XBMC4Gamers\"/>
 					<Item Action="Format" arg1="Z"/>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's XBMC4Gamers installed to "E:\XBMC4Gamers\"</Item>
 				</list>
 				<List Text=" F:\XBMC4Gamers\" Sort="Off" Batch="True" Icon="F:\XBMC4Gamers\installed.png">
@@ -820,7 +817,7 @@
 					<Item Action="Unzip" arg1="D:\Softmod\Dashboards\XBMC4Gamers.zip" arg2="F:\XBMC4Gamers">Installing dash to F:\XBMC4Gamers\</Item>
 					<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="F:\XBMC4Gamers\"/>
 					<Item Action="Format" arg1="Z"/>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's XBMC4Gamers installed to "F:\XBMC4Gamers\"</Item>
 				</list>
 				<Item>Install as application to:</Item>
@@ -882,7 +879,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="E:\Dashboard"/>
 						<Item Action="Delete" arg1="E:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's XBMC4Xbox installed to "C:\Dashboard\"</Item>
 				</list>
 				<List Text=" E:\Dashboard\" Sort="Off" Batch="True" Icon="E:\Dashboard\installed.png">
@@ -897,7 +894,7 @@
 						<Item Action="Copy" arg1="dummy" arg2="C:\Dashboard"/>
 						<Item Action="Delete" arg1="C:\Dashboard">Remove old C:\Dashboard</Item>
 					</List>
-					<Item Action="Copy" arg1="D:\Hardmod\dashloader\evoxdash.xbe" arg2="C:\"/>
+					<Item Action="Copy" arg1="D:\Hardmod\dashloader\" arg2="C:\"/>
 					<Item Action="MessageBox" arg1="Done">That's XBMC4Xbox installed to "E:\Dashboard\"</Item>
 				</list>
 				<Item>Install as application to:</Item>
@@ -1084,324 +1081,6 @@
 			</list>
 		</list>
 
-		<List Text=" Homebrew" Sort="Off">
-			<List Text="Homebrew Information" Sort="Off" Batch="True">
-				<Item Action="MessageBox" arg1="Information">Just a few homebrew games all setup &amp; ready to play.</Item>
-			</List>
-			<Item></Item>
-			<List Text=" AVP Gold Beta 2" Sort="Off">
-				<List Text="AVP Gold Beta 2 Information" Sort="Off" Batch="True">
-					<Item Action="MessageBox" arg1="Info">This is a PC port of Alien vs Predator by SirLemonhead &amp; it functions surprisingly well, considering the port was abandoned. This version uses the unreleased beta that fixed most issues with the original release.</Item>
-				</Item>
-				<Item></Item>
-				<Item>Install to:</Item>
-				<List Text=" E:\Homebrew\" Sort="Off" Batch="True">
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\Aliens versus Predator Gold.rar" arg2="E:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">AVP Gold installed to.\n\n"E:\Homebrew\Aliens versus Predator Gold\"</Item>
-				</List>
-				<List Text=" F:\Homebrew\" Sort="Off" Batch="True">
-					<list>
-						<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="F:\test_partition"/>
-						<Item Action="Rename" arg1="F:\test_partition" arg2="F:\test_partition_">No F Partition found</Item>
-						<Item Action="Delete" arg="F:\test_partition_"/>
-					</list>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\Aliens versus Predator Gold.rar" arg2="F:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">AVP Gold installed to.\n\n"F:\Homebrew\Aliens versus Predator Gold\"</Item>
-				</List>
-				<List Text=" G:\Homebrew\" Sort="Off" Batch="True">
-					<list>
-						<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="G:\test_partition"/>
-						<Item Action="Rename" arg1="G:\test_partition" arg2="G:\test_partition_">No G Partition found</Item>
-						<Item Action="Delete" arg="G:\test_partition_"/>
-					</list>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\Aliens versus Predator Gold.rar" arg2="G:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">AVP Gold installed to.\n\n"G:\Homebrew\Aliens versus Predator Gold\"</Item>
-				</List>
-			</List>
-
-			<List Text=" DoomX v2.2 Beta" Sort="Off">
-				<List Text="DoomX v2.2 Beta Information" Sort="Off" Batch="True">
-					<Item Action="MessageBox" arg1="Info">This allows you to play Doom, Doom II, Ultimate Doom, Final Doom: TNT	Evilution &amp; Final Doom: Plutonia Exp.</Item>
-				</Item>
-				<Item></Item>
-				<Item>Install to:</Item>
-				<List Text=" E:\Homebrew\" Sort="Off" Batch="True">
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\DoomX.rar" arg2="E:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">DoomX installed to.\n\n"E:\Homebrew\DoomX\"</Item>
-				</List>
-				<List Text=" F:\Homebrew\" Sort="Off" Batch="True">
-					<list>
-						<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="F:\test_partition"/>
-						<Item Action="Rename" arg1="F:\test_partition" arg2="F:\test_partition_">No F Partition found</Item>
-						<Item Action="Delete" arg="F:\test_partition_"/>
-					</list>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\DoomX.rar" arg2="F:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">DoomX installed to.\n\n"F:\Homebrew\DoomX\"</Item>
-				</List>
-				<List Text=" G:\Homebrew\" Sort="Off" Batch="True">
-					<list>
-						<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="G:\test_partition"/>
-						<Item Action="Rename" arg1="G:\test_partition" arg2="G:\test_partition_">No G Partition found</Item>
-						<Item Action="Delete" arg="G:\test_partition_"/>
-					</list>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\DoomX.rar" arg2="G:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">DoomX installed to.\n\n"G:\Homebrew\DoomX\"</Item>
-				</List>
-			</List>
-
-			<List Text=" Super Mario War v1.8" Sort="Off">
-				<List Text="Super Mario War v1.8 Information" Sort="Off" Batch="True">
-					<Item Action="MessageBox" arg1="Info">Super Mario War is a Super Mario multiplayer game. The goal is to stomp as many other Marios as possible to win the game. It's a tribute to Nintendo and the game Mario War by Samuele Poletto.</Item>
-				</Item>
-				<Item></Item>
-				<Item>Install to:</Item>
-				<List Text=" E:\Homebrew\" Sort="Off" Batch="True">
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\Super Mario War 1.8.rar" arg2="E:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">Super Mario War installed to.\n\n"E:\Homebrew\Super Mario War 1.8\"</Item>
-				</List>
-				<List Text=" F:\Homebrew\" Sort="Off" Batch="True">
-					<list>
-						<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="F:\test_partition"/>
-						<Item Action="Rename" arg1="F:\test_partition" arg2="F:\test_partition_">No F Partition found</Item>
-						<Item Action="Delete" arg="F:\test_partition_"/>
-					</list>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\Super Mario War 1.8.rar" arg2="F:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">Super Mario War installed to.\n\n"F:\Homebrew\Super Mario War 1.8\"</Item>
-				</List>
-				<List Text=" G:\Homebrew\" Sort="Off" Batch="True">
-					<list>
-						<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="G:\test_partition"/>
-						<Item Action="Rename" arg1="G:\test_partition" arg2="G:\test_partition_">No G Partition found</Item>
-						<Item Action="Delete" arg="G:\test_partition_"/>
-					</list>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\Super Mario War 1.8.rar" arg2="G:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">Super Mario War istalled to.\n\n"G:\Homebrew\Super Mario War 1.8\"</Item>
-				</List>
-			</List>
-
-			<List Text=" SMW v1.8 Halloween Edition" Sort="Off">
-				<List Text="SMW v1.8 Halloween Edition Information" Sort="Off" Batch="True">
-					<Item Action="MessageBox" arg1="Info">Super Mario War is a Super Mario multiplayer game. The goal is to stomp as many other Marios as possible to win the game. It's a tribute to Nintendo and the game Mario War by Samuele Poletto.</Item>
-				</Item>
-				<Item></Item>
-				<Item>Install to:</Item>
-				<List Text=" E:\Homebrew\" Sort="Off" Batch="True">
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\Super Mario War 1.8 Halloween Edition.rar" arg2="E:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">Super Mario War 1.8 Halloween Edition installed to.\n\n"E:\Homebrew\Super Mario War 1.8 Halloween Edition\"</Item>
-				</List>
-				<List Text=" F:\Homebrew\" Sort="Off" Batch="True">
-					<list>
-						<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="F:\test_partition"/>
-						<Item Action="Rename" arg1="F:\test_partition" arg2="F:\test_partition_">No F Partition found</Item>
-						<Item Action="Delete" arg="F:\test_partition_"/>
-					</list>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\Super Mario War 1.8 Halloween Edition.rar" arg2="F:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">Super Mario War 1.8 Halloween Edition installed to.\n\n"F:\Homebrew\Super Mario War 1.8 Halloween Edition\"</Item>
-				</List>
-				<List Text=" G:\Homebrew\" Sort="Off" Batch="True">
-					<list>
-						<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="G:\test_partition"/>
-						<Item Action="Rename" arg1="G:\test_partition" arg2="G:\test_partition_">No G Partition found</Item>
-						<Item Action="Delete" arg="G:\test_partition_"/>
-					</list>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\Super Mario War 1.8 Halloween Edition.rar" arg2="G:\Homebrew\"/>
-					<Item Action="MessageBox" Arg1="Complete">Super Mario War 1.8 Halloween Edition installed to.\n\n"G:\Homebrew\Super Mario War 1.8 Halloween Edition\"</Item>
-				</List>
-			</List>
-
-			<List Text=" xDuke v1.0" Sort="Off">
-				<List Text="xDuke v1.0 Information" Sort="Off" Batch="True">
-					<Item Action="MessageBox" arg1="Info">Play Duke Nukem 3D on the XBOX!, also supports loading of SHIT LOADS OF MODS!.</Item>
-				</Item>
-				<Item></Item>
-				<Item>Install to:</Item>
-				<List Text=" E:\Homebrew\" Sort="Off" Batch="True">
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\xDuke.rar" arg2="E:\Homebrew\"/>
-					<Item Action="Copy" arg1="E:\Homebrew\xDuke\Configs\EPartition.xml" arg2="E:\Homebrew\xDuke\Config.xml"/>
-					<Item Action="MessageBox" Arg1="Complete">xDuke installed to.\n\n"E:\Homebrew\xDuke\"</Item>
-				</List>
-				<List Text=" F:\Homebrew\" Sort="Off" Batch="True">
-					<list>
-						<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="F:\test_partition"/>
-						<Item Action="Rename" arg1="F:\test_partition" arg2="F:\test_partition_">No F Partition found</Item>
-						<Item Action="Delete" arg="F:\test_partition_"/>
-					</list>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\xDuke.rar" arg2="F:\Homebrew\"/>
-					<Item Action="Copy" arg1="F:\Homebrew\xDuke\Configs\FPartition.xml" arg2="F:\Homebrew\xDuke\Config.xml"/>
-					<Item Action="MessageBox" Arg1="Complete">xDuke installed to.\n\n"F:\Homebrew\xDuke\"</Item>
-				</List>
-				<List Text=" G:\Homebrew\" Sort="Off" Batch="True">
-					<list>
-						<Item Action="Copy" arg1="D:\Softmod\Skins\installed.png" arg2="G:\test_partition"/>
-						<Item Action="Rename" arg1="G:\test_partition" arg2="G:\test_partition_">No G Partition found</Item>
-						<Item Action="Delete" arg="G:\test_partition_"/>
-					</list>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Homebrew\xDuke.rar" arg2="G:\Homebrew\"/>
-					<Item Action="Copy" arg1="G:\Homebrew\xDuke\Configs\GPartition.xml" arg2="G:\Homebrew\xDuke\Config.xml"/>
-					<Item Action="MessageBox" Arg1="Complete">xDuke installed to.\n\n"G:\Homebrew\xDuke\"</Item>
-				</List>
-			</List>	
-		</List>
-
-		<List Text=" Game Mods" Sort="Off">
-
-			<List Text="Game Mods Information" Sort="Off" Batch="True">
-				<Item Action="MessageBox" arg1="Information">Just a few mods of mine &amp; one from CrazyChris.</Item>
-			</List>
-			<Item></Item>
-			<List Text=" FIFA 07" Sort="Off">
-				<List Text="v1.1 - Information" Sort="Off" Batch="True">
-					<Item Action="MessageBox" arg1="Info">Mod by Rocky5\n\nFor information on this mod please\nread the Info.txt file located in\n\n"D:\Softmod\Other\Mods\FIFA 07\"\n\nThere is to much to list here.</Item>
-				</Item>
-				<Item></Item>
-				<Item>Install to:</Item>
-				<List Text=" E:\Games\FIFA 07\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="E:\Games\FIFA 07" arg2="E:\Games\FIFA 071">FIFA 07 Not Installed</Item>
-					<Item Action="Rename" arg1="E:\Games\FIFA 071" arg2="E:\Games\FIFA 07"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\FIFA 07\FIFA 07 Real Gameplay Mod.rar" arg2="E:\Games\FIFA 07\"/>
-					<Item Action="Copy" Arg1="Dummy" Arg2="E:\CACHE"/>
-					<Item Action="Delete" Arg1="E:\CACHE"/>
-					<Item Action="Copy" Arg1="Dummy" Arg2="E:\CACHE"/>
-					<Item Action="Format" Arg1="X"/>
-					<Item Action="Format" Arg1="Y"/>
-					<Item Action="Format" Arg1="Z"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-				<List Text=" F:\Games\FIFA 07\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="F:\Games\FIFA 07" arg2="F:\Games\FIFA 071">FIFA 07 Not Installed</Item>
-					<Item Action="Rename" arg1="F:\Games\FIFA 071" arg2="F:\Games\FIFA 07"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\FIFA 07\FIFA 07 Real Gameplay Mod.rar" arg2="F:\Games\FIFA 07\"/>
-					<Item Action="Copy" Arg1="Dummy" Arg2="E:\CACHE"/>
-					<Item Action="Delete" Arg1="E:\CACHE"/>
-					<Item Action="Copy" Arg1="Dummy" Arg2="E:\CACHE"/>
-					<Item Action="Format" Arg1="X"/>
-					<Item Action="Format" Arg1="Y"/>
-					<Item Action="Format" Arg1="Z"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-				<List Text=" G:\Games\FIFA 07\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="G:\Games\FIFA 07" arg2="G:\Games\FIFA 071">FIFA 07 Not Installed</Item>
-					<Item Action="Rename" arg1="G:\Games\FIFA 071" arg2="G:\Games\FIFA 07"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\FIFA 07\FIFA 07 Real Gameplay Mod.rar" arg2="G:\Games\FIFA 07\"/>
-					<Item Action="Copy" Arg1="Dummy" Arg2="E:\CACHE"/>
-					<Item Action="Delete" Arg1="E:\CACHE"/>
-					<Item Action="Copy" Arg1="Dummy" Arg2="E:\CACHE"/>
-					<Item Action="Format" Arg1="X"/>
-					<Item Action="Format" Arg1="Y"/>
-					<Item Action="Format" Arg1="Z"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-			</List>
-
-			<List Text=" Operation Flashpoint" Sort="Off">
-				<List Text="v1 - Information" Sort="Off" Batch="True">
-					<Item Action="MessageBox" arg1="Info">Addons created/converted by Rocky5 &amp; Bless\n\nFor information on this mod please\nread the Info.txt file located in\n\n"D:\Softmod\Other\Mods\Operation Flashpoint Elite\"\n\nThere is to much to list here.</Item>
-				</Item>
-				<Item></Item>
-				<List Text=" Cheats" Sort="Off" Batch="True">
-					<Item Action="MessageBox" arg1="Step 1">Create the following Profiles to unlock the Hidden cheat menu. Once the following profiles have been created the hidden features menu will be unlocked.</Item>
-					<Item Action="MessageBox" arg1="Step 1">Cheat options:\nEnhanced view distance and ambient life\n"Dentist Guba"\nSame as Dentist Guba then some more stuff\n"QA Tester"\nUnlocks everything\n"XaX 1985"</Item>
-					<Item Action="MessageBox" arg1="Step 2">Now that you have unlocked the hidden menus it's time to activate them. From any menu you hold the left trigger and the white button simultaneously. A menu will appear. Now press right on the DPAD and this should enable the option you have selected.</Item>
-					<Item Action="MessageBox" arg1="Step 2">You will know you have toggling the option correctly when you receive a message in the top left corner that says "hidden objects unlocked.</Item>
-				</Item>
-				<Item>Install to:</Item>
-				<List Text=" E:\Games\Operation Flashpoint Elite\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="E:\Games\Operation Flashpoint Elite" arg2="E:\Games\Operation Flashpoint Elite1">Operation Flashpoint Elite Not Installed</Item>
-					<Item Action="Rename" arg1="E:\Games\Operation Flashpoint Elite1" arg2="E:\Games\Operation Flashpoint Elite"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\Operation Flashpoint Elite\New Addons.rar" arg2="E:\Games\Operation Flashpoint Elite\addons\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-				<List Text=" F:\Games\Operation Flashpoint Elite\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="F:\Games\Operation Flashpoint Elite" arg2="F:\Games\Operation Flashpoint Elite1">Operation Flashpoint Elite Not Installed</Item>
-					<Item Action="Rename" arg1="F:\Games\Operation Flashpoint Elite1" arg2="F:\Games\Operation Flashpoint Elite"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\Operation Flashpoint Elite\New Addons.rar" arg2="F:\Games\Operation Flashpoint Elite\addons\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-				<List Text=" G:\Games\Operation Flashpoint Elite\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="G:\Games\Operation Flashpoint Elite" arg2="G:\Games\Operation Flashpoint Elite1">Operation Flashpoint Elite Not Installed</Item>
-					<Item Action="Rename" arg1="G:\Games\Operation Flashpoint Elite1" arg2="G:\Games\Operation Flashpoint Elite"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\Operation Flashpoint Elite\New Addons.rar" arg2="G:\Games\Operation Flashpoint Elite\addons\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-			</List>
-
-			<List Text=" Richard Burns Rally" Sort="Off">
-				<List Text="v1 - Information" Sort="Off" Batch="True">
-					<Item Action="MessageBox" arg1="Info">Mod by Rocky5\n\n1. New Cockpit view\n2. New sounds\n3. New Skins for cars 512x512 or 1024x1024\n4. New weather effects\n5. New Car damage\n6. Loads of small tweaks and changes</Item>
-				</Item>
-				<Item></Item>
-				<List Text="Cheats" Sort="Off" Batch="True">
-					<Item Action="MessageBox" arg1="Cheats">Enter your profile name as: Creole</Item>
-				</Item>
-				<Item>Install to:</Item>
-				<Item>512x512 Textures</Item>
-				<List Text=" E:\Games\Richard Burns Rally\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="E:\Games\Richard Burns Rally" arg2="E:\Games\Richard Burns Rally1">Richard Burns Rally Not Installed</Item>
-					<Item Action="Rename" arg1="E:\Games\Richard Burns Rally1" arg2="E:\Games\Richard Burns Rally"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\Richard Burns Rally\512x512 Textures.rar" arg2="E:\Games\Richard Burns Rally\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-				<List Text=" F:\Games\Richard Burns Rally\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="F:\Games\Richard Burns Rally" arg2="F:\Games\Richard Burns Rally1">Richard Burns Rally Not Installed</Item>
-					<Item Action="Rename" arg1="F:\Games\Richard Burns Rally1" arg2="F:\Games\Richard Burns Rally"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\Richard Burns Rally\512x512 Textures.rar" arg2="F:\Games\Richard Burns Rally\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-				<List Text=" G:\Games\Richard Burns Rally\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="G:\Games\Richard Burns Rally" arg2="G:\Games\Richard Burns Rally1">Richard Burns Rally Not Installed</Item>
-					<Item Action="Rename" arg1="G:\Games\Richard Burns Rally1" arg2="G:\Games\Richard Burns Rally"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\Richard Burns Rally\512x512 Textures.rar" arg2="G:\Games\Richard Burns Rally\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-
-				<Item>1024x1024 Textures</Item>
-				<List Text=" E:\Games\Richard Burns Rally\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="E:\Games\Richard Burns Rally" arg2="E:\Games\Richard Burns Rally1">Richard Burns Rally Not Installed</Item>
-					<Item Action="Rename" arg1="E:\Games\Richard Burns Rally1" arg2="E:\Games\Richard Burns Rally"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\Richard Burns Rally\1024x1024 Textures.rar" arg2="E:\Games\Richard Burns Rally\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-				<List Text=" F:\Games\Richard Burns Rally\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="F:\Games\Richard Burns Rally" arg2="F:\Games\Richard Burns Rally1">Richard Burns Rally Not Installed</Item>
-					<Item Action="Rename" arg1="F:\Games\Richard Burns Rally1" arg2="F:\Games\Richard Burns Rally"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\Richard Burns Rally\1024x1024 Textures.rar" arg2="F:\Games\Richard Burns Rally\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-				<List Text=" G:\Games\Richard Burns Rally\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="G:\Games\Richard Burns Rally" arg2="G:\Games\Richard Burns Rally1">Richard Burns Rally Not Installed</Item>
-					<Item Action="Rename" arg1="G:\Games\Richard Burns Rally1" arg2="G:\Games\Richard Burns Rally"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\Richard Burns Rally\1024x1024 Textures.rar" arg2="G:\Games\Richard Burns Rally\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-			</List>
-
-			<List Text=" Wrestlemania XXI" Sort="Off">
-				<List Text="v1 - Information" Sort="Off" Batch="True">
-					<Item Action="MessageBox" arg1="Info">Mod by CrazyChris\n\nFor information on this mod please\nread the Info.txt file located in\n\n"D:\Softmod\Other\Mods\WWE Wrestlemania XXI\"\n\nThere is to much to list here.</Item>
-				</Item>
-				<Item></Item>
-				<Item>Install to:</Item>
-				<List Text=" E:\Games\WWE Wrestlemania XXI\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="E:\Games\WWE Wrestlemania XXI" arg2="E:\Games\WWE Wrestlemania XXI1">WWE Wrestlemania XXI Not Installed</Item>
-					<Item Action="Rename" arg1="E:\Games\WWE Wrestlemania XXI1" arg2="E:\Games\WWE Wrestlemania XXI"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\WWE Wrestlemania XXI\CrazyChris Modpack v1.rar" arg2="E:\Games\WWE Wrestlemania XXI\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-				<List Text=" F:\Games\WWE Wrestlemania XXI\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="F:\Games\WWE Wrestlemania XXI" arg2="F:\Games\WWE Wrestlemania XXI1">WWE Wrestlemania XXI Not Installed</Item>
-					<Item Action="Rename" arg1="F:\Games\WWE Wrestlemania XXI1" arg2="F:\Games\WWE Wrestlemania XXI"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\WWE Wrestlemania XXI\CrazyChris Modpack v1.rar" arg2="F:\Games\WWE Wrestlemania XXI\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-				<List Text=" G:\Games\WWE Wrestlemania XXI\" Sort="Off" Batch="True">
-					<Item Action="Rename" arg1="G:\Games\WWE Wrestlemania XXI" arg2="G:\Games\WWE Wrestlemania XXI1">WWE Wrestlemania XXI Not Installed</Item>
-					<Item Action="Rename" arg1="G:\Games\WWE Wrestlemania XXI1" arg2="G:\Games\WWE Wrestlemania XXI"/>
-					<Item Action="Unrar" arg1="D:\Softmod\Other\Mods\WWE Wrestlemania XXI\CrazyChris Modpack v1.rar" arg2="G:\Games\WWE Wrestlemania XXI\"/>
-					<Item Action="MessageBox" Arg1="Complete">Mod installed.</Item>
-				</List>
-			</List>
-		</List>
-
 		<Item>Advanced Menu:</Item>
 		<List Text=" Enter Menu" Sort="Off">
 			<List Text="Advanced Features Information" Sort="Off" Batch="True" password="">
@@ -1493,15 +1172,21 @@
 					</list>
 				</list>
 			</List>
-			<List Text=" Clear Cache" Sort="Off" Batch="True">
-				<Item Action="AskUser" Arg1="Clear CACHE?">Doing this can help with applications or games that crash or refusing to boot.</Item>
-				<Item Action="Copy" Arg1="Dummy" Arg2="E:\CACHE"></Item>
-				<Item Action="Delete" Arg1="E:\CACHE"></Item>
-				<Item Action="Copy" Arg1="Dummy" Arg2="E:\CACHE"></Item>
-				<Item Action="Format" Arg1="X"></Item>
-				<Item Action="Format" Arg1="Y"></Item>
-				<Item Action="Format" Arg1="Z"></Item>
-				<Item Action="MessageBox" Arg1="Complete">The CACHE has been cleared!</Item>
+			<List Text=" Tools" Sort="Off">
+				<List Text="Tools Information" Sort="On" Batch="True">
+					<Item Action="MessageBox" arg1="Information">This menu is for stuff that doesn't work in other menus. I take no responsibility for users formatting or breaking there Xbox.</Item>
+				</List>
+				<Item></Item>
+				<List Text=" Clear Cache" Sort="Off" Batch="True">
+					<Item Action="AskUser" Arg1="Clear CACHE?">Doing this can help with applications or games that crash or refusing to boot.</Item>
+					<Item Action="Copy" Arg1="Dummy" Arg2="E:\CACHE"/>
+					<Item Action="Delete" Arg1="E:\CACHE"/>
+					<Item Action="Copy" Arg1="Dummy" Arg2="E:\CACHE"/>
+					<Item Action="Format" Arg1="X"/>
+					<Item Action="Format" Arg1="Y"/>
+					<Item Action="Format" Arg1="Z"/>
+					<Item Action="MessageBox" Arg1="Complete">The CACHE has been cleared!</Item>
+				</List>
 			</List>
 			<List Text=" File Manager" Sort="Off" Batch="True" password="">
 				<Item Action="MessageBox" arg1="Warning!">Be careful when using this, as you can potentially remove something you're not meant to.</Item>

@@ -1,8 +1,69 @@
-=========================================
+========================================= 
 	Change Log
-	Xbox Softmodding Tool v1.1.6
+	Xbox Softmodding Tool v1.1.8
 	Created by Rocky5
 =========================================
+
+
+=========================================
+	Update: Sep 15 2020
+=========================================
+		Updated the save xbe files to load the installer if disc is left in and exploit is run again during the softmod process.
+		Updated the resoftmod dash to allow launching of NKPatcher Settings.
+		Updated and fixed some skin files showing the wong version.
+		( extras disc stuff )
+		Couple types fixed.
+
+
+=========================================
+	Update: Sep 01 2020
+=========================================
+		Updated the Hardmod dashloader to patch ind-bio5003 on load for XISO support.
+		( will also dismount the XISO like the softmod version )
+		Added the Patched ind-bio5003 shutdown button combo fixed, xbl enabled and ram fixed bios for the tsop flasher.
+		Changed the nuller to change the key to all 1s so 32 1s. This is so XBL Insignia when released works with your system/
+		( note: DLC will need to be resigned to the new key and some saves )
+
+
+=========================================
+	Update: May 06 2020
+=========================================
+		Dashloader will now dismount a virtual disc if found when IGRing. So ISO Games can be played like HDD games.
+		( They could be played that way before but the image would stay mounted across IGRs )
+		Updated the bat files to take a user to the Pre-Build version of the files.
+		( No one except devs or peeps that know what to do should be building the source, and now I need to step in to change that. )
+
+
+=========================================
+	Update: January 4 2020
+=========================================
+		Moved to stat() when checking if a file exists.
+		( shouldn't have just used that from the beginning, ifstream is a pain )
+		Few other minor adjustments to things
+
+
+=========================================
+	Update: January 1 2020
+=========================================
+		Extras Disc should now detect retail bios properly.
+		( no more crashing )
+		Backup Bios in NKPatcher settings will dump proper sized bios.
+		( no more 1MB bios for v1.6 xbox for example )
+		Added a new app Dashloader Customizer so you can set your custom face button launch paths easily.
+		Fixed dashloader not working with the start and back buttons
+		( face button launching, forgot they ain't analogue buttons )
+
+
+=========================================
+	Update: December 30 2019
+=========================================
+		Updated Dashloader to support multiple dash configs via pressing face buttons.
+		( A,B,X,Y,Start,Back,White and black configs are located in E:/UDATA/21585554/000000000000/nkpatcher settings/dashloader/ )
+		Updated Dashloader to store its files on E so people can change stuff and add custom boot paths eg...
+		Added a TSOP flasher feature to the extras disc.
+		( Hold Start or run it from the menu under the tools menu )
+		Updated the disc to allow users to install apps eg... if hardmodded.
+		Note: this update has been sitting here for the better part of a year, so I have probably forgot some things :lol:
 
 =========================================
 	Update: March 23 2019
